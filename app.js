@@ -64,14 +64,14 @@ app.use(function(err, req, res, next) {
 
 /* Chat application setup */
 
-var ioserver = require('http').Server(express);
-var io = require('socket.io')(ioserver);
+var server = require('http').Server(express);
+var io = require('socket.io')(server);
 var chatapp = require('express')();
 
-ioserver.listen(3000);
+server.listen(3000);
 
 chatapp.get('/', function (req, res) {
-  res.sendfile(__dirname + '/index.html');
+  res.sendFile(__dirname + '/index.html');
 });
 
 io.on('connection', function (socket) {
